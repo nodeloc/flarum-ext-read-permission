@@ -1,0 +1,15 @@
+nodeloc-read-permission:
+  # For more details on the format
+  # Checkout https://docs.flarum.org/extend/i18n/#appendix-a-standard-key-format
+  admin:
+    readPermission: permission
+    readPermissionHelper: 0 to All , the big , read more
+
+  forum:
+    modal:
+      add_title: Add permission
+      readPermission_placeholder: Choose permission
+      submit: Submit
+    composer_discussion:
+      add_readPermission: Add permission
+      edit_readPermission: Edit permission
