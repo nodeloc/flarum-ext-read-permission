@@ -13,3 +13,6 @@ nodeloc-read-permission:
     composer_discussion:
       add_readPermission: Add permission
       edit_readPermission: Edit permission
+
+    read-failed: Failed
+    read-failed-detail: You have no permission to read this discussion.

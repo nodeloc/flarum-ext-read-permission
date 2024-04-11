@@ -11,9 +11,14 @@
 
 namespace Nodeloc\ReadPermission;
 
+use Flarum\Api\Serializer\CurrentUserSerializer;
 use Flarum\Api\Serializer\GroupSerializer;
+use Flarum\Api\Serializer\DiscussionSerializer;
+use Flarum\Api\Serializer\PostSerializer;
 use Flarum\Extend;
 use Flarum\Group\Group;
+use Flarum\Discussion\Discussion;
+use Flarum\Post\Post;
 
 return [
     (new Extend\Frontend('forum'))
@@ -30,6 +35,20 @@ return [
         ->attribute('readPermission', function (GroupSerializer $serializer, Group $group) {
             return $group->read_permission;
         }),
+    
+    (new Extend\ApiSerializer(DiscussionSerializer::class))
+        ->attribute('readPermission', function (DiscussionSerializer $serializer, $model) {
+            return $model->read_permission;
+        }),
+
+    (new Extend\ApiSerializer(PostSerializer::class))
+        ->attribute('readPermission', function (PostSerializer $serializer, Post $post) {
+            return $post->discussion->read_permission;
+        }),
+
+    (new Extend\ApiSerializer(CurrentUserSerializer::class))
+        ->attributes(Attributes\ReadPermissionAttribute::class),
+
     (new Extend\Settings())
         ->default('nodeloc-read-permission.group', Group::MEMBER_ID),
 ];

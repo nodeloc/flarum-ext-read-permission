@@ -26,9 +26,9 @@
             "title": "ReadPermission",
             "category": "",
             "icon": {
-                "name": "",
-                "color": "",
-                "backgroundColor": ""
+                "name": "fas fa-eye-slash",
+                "color": "#ffffff",
+                "backgroundColor": "86469C"
             }
         },
         "flarum-cli": {

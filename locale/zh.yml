@@ -1,0 +1,18 @@
+nodeloc-read-permission:
+  # For more details on the format
+  # Checkout https://docs.flarum.org/extend/i18n/#appendix-a-standard-key-format
+  admin:
+    readPermission: 阅读权限
+    readPermissionHelper: 填写数字, 默认0, 用户(组)阅读权限需要大于等于填写数字
+
+  forum:
+    modal:
+      add_title: 增加阅读权限
+      readPermission_placeholder: 选择阅读权限
+      submit: 提交
+    composer_discussion:
+      add_readPermission: 增加阅读权限
+      edit_readPermission: 编辑阅读权限
+
+    read-failed: 阅读提示
+    read-failed-detail: 抱歉，你没有权限阅读此话题。
