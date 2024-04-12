@@ -74,6 +74,9 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
       if (!discussion) return;
 
       let showPermissionModal = false;
+      if(!app.session || !app.session.user){
+        return true;
+      }
       if(discussion.attribute('readPermission') > 0) {
         // writer or admin
         // tips: need to give moderator high permission
@@ -82,7 +85,7 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
           showPermissionModal = false;
         }
         // check user permission
-        if(parseInt(app.session.user!.attribute('read_permission')) >= discussion.attribute('readPermission')) {
+        if(app.session && parseInt(app.session.user!.attribute('read_permission')) >= discussion.attribute('readPermission')) {
           showPermissionModal = false;
         }
         return showPermissionModal;
@@ -111,7 +114,7 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
     if(this.attrs.post) {
       const discussion = this.attrs.post.discussion();
       let needPermission = false;
-      if(this.attrs.post.attribute('readPermission') > 0) {
+      if(this.attrs.post.attribute('readPermission') > 0&& app.session?.user) {
         // writer or admin
         // tips: need to give moderator high permission
         needPermission = true;
