@@ -7,12 +7,12 @@ nodeloc-read-permission:
 
   forum:
     modal:
-      add_title: 增加阅读权限
+      add_title: 设置阅读权限
       readPermission_placeholder: 选择阅读权限
       submit: 提交
     composer_discussion:
-      add_readPermission: 增加阅读权限
-      edit_readPermission: 编辑阅读权限
+      add_readPermission: 增加权限
+      edit_readPermission: 编辑权限
     tooltip:
       badge: 权限
     read-failed: 阅读提示
