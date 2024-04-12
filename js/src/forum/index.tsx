@@ -74,9 +74,7 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
       if (!discussion) return;
 
       let showPermissionModal = false;
-      if(!app.session || !app.session.user){
-        return true;
-      }
+
       if(discussion.attribute('readPermission') > 0) {
         // writer or admin
         // tips: need to give moderator high permission
@@ -85,7 +83,7 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
           showPermissionModal = false;
         }
         // check user permission
-        if(app.session && parseInt(app.session.user!.attribute('read_permission')) >= discussion.attribute('readPermission')) {
+        if(app.session && app.session.user && parseInt(app.session.user!.attribute('read_permission')) >= discussion.attribute('readPermission')) {
           showPermissionModal = false;
         }
         return showPermissionModal;
