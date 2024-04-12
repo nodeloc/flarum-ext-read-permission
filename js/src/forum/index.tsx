@@ -7,6 +7,7 @@ import DiscussionListItem from 'flarum/forum/components/DiscussionListItem';
 import DiscussionPage from 'flarum/forum/components/DiscussionPage';
 import Post from 'flarum/forum/components/Post';
 import type Mithril from 'mithril';
+import addDiscussionBadge from './addDiscussionBadge';
 
 import addComposerItems from './addComposerItems';
 import ReadFailedModal from './components/ReadFailedModal';
@@ -14,7 +15,7 @@ import ReadFailedModal from './components/ReadFailedModal';
 export { default as extend } from './extend';
 
 app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
-
+  addDiscussionBadge();
   // console.log('[nodeloc/flarum-ext-read-permission] Hello, forum!');
   addComposerItems();
 
@@ -61,8 +62,6 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
         </Link>
       );
     }
-
-
   });
 
   //DiscussionPage
@@ -95,7 +94,7 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
         <div className="DiscussionPage">
           <div className="DiscussionPage-discussion">
             <div className="container">
-              <p>You have no permission to view this discussion;</p>
+              <p>{app.translator.trans('nodeloc-read-permission.forum.low-permission')}</p>
             </div>
           </div>
         </div>
@@ -112,7 +111,7 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
     if(this.attrs.post) {
       const discussion = this.attrs.post.discussion();
       let needPermission = false;
-      if(this.attrs.post.attribute('readPermission') > 0&& app.session?.user) {
+      if(this.attrs.post.attribute('readPermission') > 0 && app.session?.user) {
         // writer or admin
         // tips: need to give moderator high permission
         needPermission = true;
@@ -126,7 +125,7 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
       }
 
       if(needPermission) {
-        return '';
+        return app.translator.trans('nodeloc-read-permission.forum.low-permission');
       } else {
         return originalFunc();
       }

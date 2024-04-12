@@ -13,6 +13,8 @@ nodeloc-read-permission:
     composer_discussion:
       add_readPermission: 增加阅读权限
       edit_readPermission: 编辑阅读权限
-
+    tooltip:
+      badge: 权限
     read-failed: 阅读提示
     read-failed-detail: 抱歉，你没有权限阅读此话题。最低权限 -
+    low-permission: 您没有足够的权限.

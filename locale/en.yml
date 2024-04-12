@@ -13,6 +13,9 @@ nodeloc-read-permission:
     composer_discussion:
       add_readPermission: Add permission
       edit_readPermission: Edit permission
+    tooltip:
+      badge: Permission
 
     read-failed: Failed
     read-failed-detail: You have no permission to read this discussion. Lowest permission -
+    low-permission: You don't have enough permission.
