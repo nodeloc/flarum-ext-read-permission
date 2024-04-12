@@ -15,4 +15,4 @@ nodeloc-read-permission:
       edit_readPermission: 编辑阅读权限
 
     read-failed: 阅读提示
-    read-failed-detail: 抱歉，你没有权限阅读此话题。
+    read-failed-detail: 抱歉，你没有权限阅读此话题。最低权限 -

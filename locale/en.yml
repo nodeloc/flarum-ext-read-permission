@@ -15,4 +15,4 @@ nodeloc-read-permission:
       edit_readPermission: Edit permission
 
     read-failed: Failed
-    read-failed-detail: You have no permission to read this discussion.
+    read-failed-detail: You have no permission to read this discussion. Lowest permission -

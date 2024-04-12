@@ -15,8 +15,6 @@ export { default as extend } from './extend';
 
 app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
 
-  
-
   // console.log('[nodeloc/flarum-ext-read-permission] Hello, forum!');
   addComposerItems();
 
@@ -27,7 +25,7 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
 
     //detect discussion read permission
     let showPermissionModal = false;
-    if(discussion.attribute('readPermission') > 0) {
+    if(discussion.attribute('readPermission') > 0 && app.session?.user) {
       // writer or admin
       // tips: need to give moderator high permission
       showPermissionModal = true;
@@ -43,9 +41,9 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
     this.permissionModal = function(e) {
       e.preventDefault();
       // solution1: modal box
-      app.modal.show(ReadFailedModal);
+      app.modal.show(ReadFailedModal, { readPermission: discussion.attribute('readPermission') });
     }
-    
+
     if(showPermissionModal) {
       return (
         <a href='javacript:void();' onclick={this.permissionModal.bind(this)} className="DiscussionListItem-main">
@@ -63,18 +61,18 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
         </Link>
       );
     }
-    
+
 
   });
 
   //DiscussionPage
   override(DiscussionPage.prototype, 'view', function(this: DiscussionPage, originalFunc: () => Mithril.Children): Mithril.Children {
-    
+
     this.detectPermission = function(): boolean{
       const discussion = this.discussion;
-      
+
       if (!discussion) return;
-    
+
       let showPermissionModal = false;
       if(discussion.attribute('readPermission') > 0) {
         // writer or admin
@@ -107,7 +105,7 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
 
   });
 
-  
+
   override(Post.prototype, 'view', function(this: Post, originalFunc) {
     // console.log(this.attrs.post);
     if(this.attrs.post) {
@@ -132,7 +130,7 @@ app.initializers.add('nodeloc/flarum-ext-read-permission', () => {
         return originalFunc();
       }
     }
-    
+
   });
 
 });
